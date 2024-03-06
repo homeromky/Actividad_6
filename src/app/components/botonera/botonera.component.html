@@ -1,0 +1,25 @@
+<div class="d-flex gap-2">
+    @if(parent === 'view')
+    {
+        <a class="btn btn btn-secondary" [routerLink]="['/usuarios']">volver a listado</a>
+        <a class="btn btn-warning" [routerLink]="['/update','usuario',idUsuario]">
+            <i class="fa-solid fa-arrows-rotate"></i>
+            actualizar</a>
+        <button class="btn btn-danger" (click)="borrarSerie(idUsuario)">
+            <i class="fa-solid fa-trash"></i>Borrar</button>
+    }
+    @else if(parent == 'card')
+    {
+        <a class="btn btn-secondary" [routerLink]="['/usuario', idUsuario]">
+            <i class="fa-solid fa-magnifying-glass"></i>
+            Ver detall</a>
+   
+    <a class="btn btn-warning" [routerLink]="['/update','usuario',idUsuario]">
+        <i class="fa-solid fa-arrows-rotate"></i>
+        actualizar</a>
+
+    <button class="btn btn-danger" (click)="borrarSerie(idUsuario)">
+        <i class="fa-solid fa-trash"></i>Borrar</button>
+    }
+
+</div>

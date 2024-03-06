@@ -1,0 +1,35 @@
+<!-- <div class="card mb-3">
+    <div class="row g-0">
+        <div class="col-md-4">
+            <img [src]="miUser.image" class="img-fluid rounded-start" [alt]="miUser.username">
+        </div>
+        <div class="col-md-4">
+            <div class="card-body">
+                <h5 class="card-title">{{miUser.first_name}}</h5>
+          
+
+            </div>
+
+        </div>
+
+    </div>
+
+ 
+
+</div> -->
+
+
+<div class="container mt-8">
+    <div class="row">
+      <div>
+        <div class="card p-3">
+            <img [src]="miUser.image" class="img-fluid rounded-circle" [alt]="miUser.username">
+          
+            <h5 class="card-title">{{miUser.first_name}}{{miUser.last_name}}</h5>
+          
+          <app-botonera [parent]="'card'" [idUsuario]="miUser._id"></app-botonera>
+             
+        </div>
+      </div>
+    </div>
+  </div>
