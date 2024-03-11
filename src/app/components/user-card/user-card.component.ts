@@ -1,7 +1,5 @@
 import { Component,Input} from '@angular/core';
 import { IUsuario} from '../../interfaces/iusuario.interface';
-import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
-import { faCoffee } from '@fortawesome/free-solid-svg-icons';
 import { BotoneraComponent } from '../botonera/botonera.component';
 
 @Component({
