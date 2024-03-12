@@ -14,6 +14,7 @@ export class UserFormComponent {
  tipo: string = 'Nuevo';
  usuarioForm: FormGroup;
  activatedRout = inject(ActivatedRoute)
+ router = inject(Router)
  usuarioService = inject(UsersService)
 
  constructor(){
@@ -56,7 +57,23 @@ console.log(response)
   })
 
  }
-getDataForm(){
+async getDataForm(){
+
+  if(this.usuarioForm.value._id){
+     const response = await this.usuarioService.update(this.usuarioForm.value)
+     console.log(response)
+
+     if(response.id)
+     {
+      alert(`El usuario ${response.username} se ha actualizado correctaemnte`)
+      this.router.navigate(['/usuarios'])
+     }
+     else{
+      alert('Ha habido un problema intentalo nuevamente')
+    }
+  }
+
+
 
 
 }

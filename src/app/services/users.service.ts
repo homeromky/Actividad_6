@@ -4,6 +4,7 @@ import { Observable, lastValueFrom, map } from 'rxjs';
 import { IUsuario } from '../interfaces/iusuario.interface';
 import { IResponse } from '../interfaces/iresponse .interface';
 
+
 @Injectable({
   providedIn: 'root'
 })
@@ -14,7 +15,13 @@ private httpClient = inject(HttpClient)
 private baseUrl = 'https://peticiones.online/api/users'
 
 
+
+
 getUsers(): Observable<IResponse<IUsuario>> {
+  return this.httpClient.get<IResponse<IUsuario>>(this.baseUrl);
+}
+
+getPages(): Observable<IResponse<IUsuario>> {
   return this.httpClient.get<IResponse<IUsuario>>(this.baseUrl);
 }
 
@@ -30,6 +37,11 @@ delete(id:string) : Promise<IUsuario>
   const respose = lastValueFrom(this.httpClient.delete<IUsuario>(url))
   
   return respose;
+}
+update(formValue: IUsuario) : Promise<IUsuario>
+{
+  const url = `${this.baseUrl}/${formValue._id}`;
+  return lastValueFrom(this.httpClient.put<IUsuario>(url,formValue))
 }
 }
 
