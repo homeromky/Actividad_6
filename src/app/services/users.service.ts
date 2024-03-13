@@ -43,6 +43,11 @@ update(formValue: IUsuario) : Promise<IUsuario>
   const url = `${this.baseUrl}/${formValue._id}`;
   return lastValueFrom(this.httpClient.put<IUsuario>(url,formValue))
 }
+
+insert(formValue: IUsuario) : Promise<IUsuario>
+{
+  return lastValueFrom(this.httpClient.post<IUsuario>(this.baseUrl, formValue))
+}
 }
 
 

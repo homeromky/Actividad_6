@@ -1,31 +1,61 @@
 <h1>{{tipo}} Usuario</h1>
-
-
 <hr>
 <section>
 
     <form [formGroup]="usuarioForm" (ngSubmit)="getDataForm()">
-        <div>
+        <div class="mb-3">
             <label class="form-label" for="first_name">Nombre Usuario</label>
             <input class="form-control" type="text" id="first_name"
             formControlName="first_name" >
+
+            @if(validarControl('first_name', 'required')){
+                <p class="error">Campo requerido</p>
+                }
+            @if(validarControl('first_name', 'minlength') ){
+                    <p class="error">El campo tiene que tener minimo 3 caracteres</p>
+            }
+            @if(validarControl('firts_name', 'maxlength') ){
+                <p class="error">El campo tiene que tener maximo 50 caracteres</p>
+                }
         </div>
-        <div>
+        <div class="mb-3">
             <label class="form-label" for="last_name">Apellido Usuario</label>
             <input class="form-control" type="text" id="last_name"
-            formControlName="last_name" >
+            formControlName="last_name">
+            @if(validarControl('last_name', 'required')){
+                <p class="error">Campo requerido</p>
+                }
+            @if(validarControl('last_name', 'minlength') ){
+                    <p class="error">El campo tiene que tener minimo 3 caracteres</p>
+            }
+            @if(validarControl('last_name', 'maxlength') ){
+                <p class="error">El campo tiene que tener maximo 50 caracteres</p>
+                }
         </div>
-        <div>
+        <div class="mb-3">
             <label class="form-label" for="email">Email Usuario</label>
             <input class="form-control" type="text" id="email"
             formControlName="email" >
+            @if(validarControl('email', 'required')){
+                <p class="error">Campo requerido</p>
+                }
+            @if(validarControl('email', 'pattern') ){
+                <p class="error">Campo no es de tipo email</p>
+            }
+           
         </div>
-        <div>
+        <div class="mb-3">
             <label class="form-label" for="image">Imagen Usuario</label>
             <input class="form-control" type="text" id="image"
             formControlName="image" >
+            @if(validarControl('image', 'required')){
+                <p class="error">Campo requerido</p>
+                }
         </div>
-        <input type="submit"  [disabled]="!usuarioForm.valid" value="Envia" class="btn btn-success">
+        <input type="submit"  [disabled]="!usuarioForm.valid" value="{{boton}}" class="btn btn-success">
+   
+       
+   
     </form>
 </section>
 

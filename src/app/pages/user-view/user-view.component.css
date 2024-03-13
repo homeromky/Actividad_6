@@ -1,0 +1,11 @@
+p {
+    font-weight: bold;
+  }
+
+  span {
+    font-weight: lighter;
+  }
+  .vertical {
+    border-right: 2px solid rgb(114, 112, 112);
+  
+  }

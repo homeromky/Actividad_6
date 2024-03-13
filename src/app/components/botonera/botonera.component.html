@@ -1,18 +1,24 @@
-<div class="d-flex justify-content-around p-2">
+<div class="d-flex justify-content-around p-2 text-center">
 
     <div class="d-flex flex-column">
         <a class="d-flex flex-column"  [routerLink]="['/update','usuario',idUsuario]">
             <span class="material-symbols-outlined">
+                @if(parent === 'card')
+                {
                 refresh
+                }
                 </span>
             <p class="text-xs">Actualizar</p>
         </a>
     
     </div>
     <div class="d-flex flex-column">
-        <a class="d-flex flex-column" href="" (click)="borrarSerie(idUsuario)">
+        <a class="d-flex flex-column" (click)="borrarSerie(idUsuario)">
             <span class="material-symbols-outlined">
+                @if(parent === 'card')
+                {
                 delete
+                }
                 </span>
             <p class="text-xs">Eliminar</p></a>
     </div>
@@ -21,9 +27,7 @@
       
         <div class="d-flex flex-column">
             <a class="d-flex flex-column" [routerLink]="['/usuarios']">
-                <span class="material-symbols-outlined">
-                    visibility
-                    </span>
+              
                 <p class="text-xs">Volver al listado</p>
             </a>
         
@@ -32,9 +36,6 @@
     }
     @else if(parent == 'card')
     {
-      
-
-         
         <div class="d-flex flex-column">
             <a class="d-flex flex-column"  [routerLink]="['/usuario', idUsuario]">
                 <span class="material-symbols-outlined">
@@ -54,34 +55,3 @@
 
 </div>
 
-
-<!-- <div class="d-flex gap-2">
-    @if(parent === 'view')
-    {
-       
-
-
-
-
-        <a class="btn btn btn-secondary" [routerLink]="['/usuarios']">volver a listado</a>
-        <a class="btn btn-warning" [routerLink]="['/update','usuario',idUsuario]">
-            <i class="fa-solid fa-arrows-rotate"></i>
-            actualizar</a>
-        <button class="btn btn-danger" (click)="borrarSerie(idUsuario)">
-            <i class="fa-solid fa-trash"></i>Borrar</button>
-    }
-    @else if(parent == 'card')
-    {
-        <a class="btn btn-secondary" [routerLink]="['/usuario', idUsuario]">
-            <i class="fa-solid fa-magnifying-glass"></i>
-            Ver detall</a>
-   
-    <a class="btn btn-warning" [routerLink]="['/update','usuario',idUsuario]">
-        <i class="fa-solid fa-arrows-rotate"></i>
-        actualizar</a>
-
-    <button class="btn btn-danger" (click)="borrarSerie(idUsuario)">
-        <i class="fa-solid fa-trash"></i>Borrar</button>
-    }
-
-</div> -->

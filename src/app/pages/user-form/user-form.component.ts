@@ -1,5 +1,5 @@
 import { Component, inject } from '@angular/core';
-import { FormControl, FormGroup, ReactiveFormsModule } from '@angular/forms';
+import {FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { UsersService } from '../../services/users.service';
 
@@ -12,6 +12,7 @@ import { UsersService } from '../../services/users.service';
 })
 export class UserFormComponent {
  tipo: string = 'Nuevo';
+ boton: string = 'Guardar';
  usuarioForm: FormGroup;
  activatedRout = inject(ActivatedRoute)
  router = inject(Router)
@@ -22,12 +23,26 @@ export class UserFormComponent {
   this.usuarioForm = new FormGroup({
     _id: new FormControl('',[]),
     id: new FormControl('',[]),
-    first_name: new FormControl('',[]),
-    last_name: new FormControl('',[]),
-    username: new FormControl('',[]),
-    email: new FormControl('',[]),
-    image: new FormControl('',[]),
-    password: new FormControl('',[]),
+    first_name: new FormControl(null,[
+      Validators.required,
+      Validators.minLength(3),
+      Validators.maxLength(50)
+    ]),
+    last_name: new FormControl(null,[
+      Validators.required,
+      Validators.minLength(3),
+      Validators.maxLength(50)
+    ]),
+    username: new FormControl(null,[]),
+    email: new FormControl(null, [
+      Validators.required,
+      Validators.pattern(/^[\w-.]+@([\w-]+\.)+[\w-]{2,4}$/)
+      
+    ]),
+    image: new FormControl(null,[
+      Validators.required,
+    ]),
+    password: new FormControl(null,[]),
     
   },[])
  }
@@ -38,10 +53,8 @@ export class UserFormComponent {
   {
     if(params.id){
     this.tipo = 'Actualizar'
+    this.boton = 'Actualizar'
     const response = await this. usuarioService.getById(params.id)
-
-console.log(response)
-
 
     this.usuarioForm.setValue(response)
 
@@ -72,10 +85,21 @@ async getDataForm(){
       alert('Ha habido un problema intentalo nuevamente')
     }
   }
+  else{
+    const response = await this.usuarioService.insert(this.usuarioForm.value)
+    if(response.id)
+    {
+      console.log(response)
+      this.router.navigate(['/usuarios'])
+    }
+    else{
+      alert('Ha habido un problema intentalo nuevamente')
+    }
+  }
+}
+validarControl(formControlName: string, validador: string): boolean | undefined {
 
-
-
-
+  return this.usuarioForm.get(formControlName)?.hasError(validador) && this.usuarioForm.get(formControlName)?.touched
 }
   
 }
