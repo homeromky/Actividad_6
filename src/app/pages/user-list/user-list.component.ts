@@ -18,39 +18,42 @@ import { NgFor } from '@angular/common';
 export class UserListComponent {
   usersServices = inject(UsersService)
   arrUsers: IUsuario[] = [];
-  
+
 
   total_page: number | undefined;
   page: number | undefined;
   per_page: number | undefined;
-  total: number | undefined;
-  p:number = 1;
+  total: number | undefined
+  
  
+  async ngOnInit(): Promise<void> {
+    // try{
+    //    await this.usersServices.getAll().then((res)=>{
+    //     this.arrUsers = res.results
 
-  ngOnInit(): void {
-
-    this.usersServices.getPages().subscribe(
-      (data:any ) => {
-
-          this.total_page = data.total_page;
-          this.page = data.page;
-          this.per_page= data.per_page;
-          this.total = data.total;
-         
-      },
-      (error) => {
-        console.error('Error al obtener la paginación:', error);
-      }
-    );
-   
+    //     console.log(this.arrUsers)
+    //   },
+    //   (error) => {
+    //       console.error('Error:', error);
+    //   });
+      
+    //  }
+    //  catch(error){
+    //   console.error('Error al obtener los nombres de usuario:', error);
+    //  }
+    
     this.usersServices.getUsers().subscribe(
       (data:any ) => {
-           this.arrUsers = data.results; 
-      },
+            this.arrUsers = data.results;
+            this.total_page = data.total_page;
+            this.page = data.page;
+            this.per_page= data.per_page;
+            this.total = data.total;
+       },
       (error) => {
         console.error('Error al obtener los nombres de usuario:', error);
       }
-    );
+    ); 
   }
 
   getTotalPages(): number {

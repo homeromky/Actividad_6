@@ -2,6 +2,7 @@ import { Component, inject } from '@angular/core';
 import {FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { UsersService } from '../../services/users.service';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-user-form',
@@ -78,11 +79,18 @@ async getDataForm(){
 
      if(response.id)
      {
-      alert(`El usuario ${response.username} se ha actualizado correctaemnte`)
+      
+      Swal.fire(`El usuario ${response.username} se ha actualizado correctaemnte`);
       this.router.navigate(['/usuarios'])
+
+
+      
      }
      else{
-      alert('Ha habido un problema intentalo nuevamente')
+      
+        Swal.fire(`Ha habido un problema intentalo nuevamente.`);
+      
+      
     }
   }
   else{
@@ -93,7 +101,8 @@ async getDataForm(){
       this.router.navigate(['/usuarios'])
     }
     else{
-      alert('Ha habido un problema intentalo nuevamente')
+      Swal.fire(`Ha habido un problema intentalo nuevamente.`);
+    
     }
   }
 }

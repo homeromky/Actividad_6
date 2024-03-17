@@ -3,6 +3,7 @@ import { BotoneraComponent } from '../../components/botonera/botonera.component'
 import { ActivatedRoute } from '@angular/router';
 import { IUsuario } from '../../interfaces/iusuario.interface';
 import { UsersService } from '../../services/users.service';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-user-view',
@@ -11,6 +12,7 @@ import { UsersService } from '../../services/users.service';
   templateUrl: './user-view.component.html',
   styleUrl: './user-view.component.css'
 })
+
 export class UserViewComponent {
 
   activatedRoute = inject(ActivatedRoute)
@@ -24,7 +26,9 @@ export class UserViewComponent {
       try{
         this.unUsuario = await this.usuarioService.getById(id);
       }catch(error){
-        console.log(error)
+        
+        Swal.fire(`Ha habido un problema intentalo nuevamente.`);
+        
       }
     })
   }

@@ -16,15 +16,14 @@ private baseUrl = 'https://peticiones.online/api/users'
 
 
 
+// getUsers(): Promise<any>
+// {
+//   return lastValueFrom(this.httpClient.get<any>(this.baseUrl))
+// }
 
 getUsers(): Observable<IResponse<IUsuario>> {
   return this.httpClient.get<IResponse<IUsuario>>(this.baseUrl);
 }
-
-getPages(): Observable<IResponse<IUsuario>> {
-  return this.httpClient.get<IResponse<IUsuario>>(this.baseUrl);
-}
-
 getById(id:string) : Promise<IUsuario>
 {
   const url = `${this.baseUrl}/${id}`;
@@ -46,8 +45,22 @@ update(formValue: IUsuario) : Promise<IUsuario>
 
 insert(formValue: IUsuario) : Promise<IUsuario>
 {
-  return lastValueFrom(this.httpClient.post<IUsuario>(this.baseUrl, formValue))
+
+  let arrusename = formValue.email.split('');
+  let username: string = ""
+  for (var val of arrusename) {
+    if(val === '@'){
+      break;
+    }
+    else{
+      username += val
+    }
+  }
+  formValue.username = username;
+ 
+ return lastValueFrom(this.httpClient.post<IUsuario>(this.baseUrl, formValue))
 }
+
 }
 
 

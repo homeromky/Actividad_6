@@ -14,13 +14,13 @@
     </div>
     <div class="d-flex flex-column">
         <a class="d-flex flex-column" (click)="borrarSerie(idUsuario)">
-            <span class="material-symbols-outlined">
+            <span class="material-symbols-outlined" style="cursor: pointer">
                 @if(parent === 'card')
                 {
                 delete
                 }
                 </span>
-            <p class="text-xs">Eliminar</p></a>
+            <p class="text-xs" style="cursor: pointer">Eliminar</p></a>
     </div>
     @if(parent === 'view')
     {
@@ -38,7 +38,7 @@
     {
         <div class="d-flex flex-column">
             <a class="d-flex flex-column"  [routerLink]="['/usuario', idUsuario]">
-                <span class="material-symbols-outlined">
+                <span class="material-symbols-outlined" >
                     visibility
                     </span>
                 <p class="text-xs">Ver detalle</p>
